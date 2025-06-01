@@ -1,0 +1,21 @@
+{
+  "name": "@workspace/schema",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "drizzle-orm": "^0.44.1",
+    "drizzle-zod": "^0.8.2",
+    "zod": "^3.25.1"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^2.4.2",
+    "@types/node": "^20",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "typescript": "^5.7.3"
+  },
+  "exports": {
+    "./*": "./src/*"
+  }
+}
