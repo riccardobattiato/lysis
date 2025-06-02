@@ -16,6 +16,7 @@
     "typescript": "^5.7.3"
   },
   "exports": {
-    "./*": "./src/*"
+    "./users": "./src/users.ts",
+    "./items": "./src/items.ts"
   }
 }

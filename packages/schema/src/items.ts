@@ -14,6 +14,10 @@ import {
   createUpdateSchema,
 } from "drizzle-zod";
 
+export enum ItemType {
+  FOLDER = "FOLDER",
+  ITEM = "ITEM",
+}
 export const itemTypeEnum = pgEnum("item_type", ["FOLDER", "ITEM"]);
 
 export const items = table(
