@@ -1,3 +1,6 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import {
   Breadcrumb,
@@ -14,7 +17,13 @@ import {
   SidebarTrigger,
 } from "@workspace/ui/components/sidebar";
 
+import { mockItems } from "@/lib/mocks";
+import { buildTree } from "@/features/items-list/utils/tree";
+import { ItemsList } from "@/features/items-list/components/ItemsList";
+
 export default function Page() {
+  const [items, setItems] = useState(mockItems);
+  const tree = useMemo(() => buildTree(items, null), [items]);
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -42,12 +51,7 @@ export default function Page() {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+          <ItemsList tree={tree} />
         </div>
       </SidebarInset>
     </SidebarProvider>
