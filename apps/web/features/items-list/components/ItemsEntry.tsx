@@ -1,8 +1,9 @@
 import { forwardRef } from "react";
 import { ItemType } from "@workspace/schema/items";
-import { ChevronRight, Circle, Folder } from "lucide-react";
+import { ChevronRight, Folder } from "lucide-react";
 import { ItemNode } from "../types";
 import { cn } from "@workspace/ui/lib/utils";
+import ItemCheckbox from "./ItemCheckbox";
 
 type Props = {
   data: ItemNode;
@@ -27,7 +28,7 @@ const ItemsEntry = forwardRef<HTMLDivElement, Props>(
           <ChevronRight className="transition-transform size-4" />
         )}
         {data.item.type === ItemType.FOLDER && <Folder className="size-4" />}
-        {data.item.type === ItemType.ITEM && <Circle className="size-4" />}
+        {data.item.type === ItemType.ITEM && <ItemCheckbox node={data} />}
         <div className="text-sm">{data.item.title}</div>
       </div>
     );
