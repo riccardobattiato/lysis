@@ -70,6 +70,31 @@ importers:
         specifier: ^5.7.3
         version: 5.7.3
 
+  packages/api-types:
+    dependencies:
+      '@workspace/schema':
+        specifier: workspace:*
+        version: link:../schema
+      zod:
+        specifier: ^3.25.56
+        version: 3.25.56
+    devDependencies:
+      '@turbo/gen':
+        specifier: ^2.4.2
+        version: 2.4.2(@types/node@20.17.19)(typescript@5.7.3)
+      '@types/node':
+        specifier: ^20
+        version: 20.17.19
+      '@workspace/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@workspace/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      typescript:
+        specifier: ^5.7.3
+        version: 5.7.3
+
   packages/eslint-config:
     devDependencies:
       '@next/eslint-plugin-next':
@@ -116,10 +141,10 @@ importers:
         version: 0.44.1
       drizzle-zod:
         specifier: ^0.8.2
-        version: 0.8.2(drizzle-orm@0.44.1)(zod@3.25.1)
+        version: 0.8.2(drizzle-orm@0.44.1)(zod@3.25.56)
       zod:
-        specifier: ^3.25.1
-        version: 3.25.1
+        specifier: ^3.25.56
+        version: 3.25.56
     devDependencies:
       '@turbo/gen':
         specifier: ^2.4.2
@@ -190,8 +215,8 @@ importers:
         specifier: ^1.2.4
         version: 1.2.4
       zod:
-        specifier: ^3.25.1
-        version: 3.25.1
+        specifier: ^3.25.56
+        version: 3.25.56
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.0.8
@@ -2934,8 +2959,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@3.25.1:
-    resolution: {integrity: sha512-bkxUGQiqWDTXHSgqtevYDri5ee2GPC9szPct4pqpzLEpswgDQmuseDz81ZF0AnNu1xsmnBVmbtv/t/WeUIHlpg==}
+  zod@3.25.56:
+    resolution: {integrity: sha512-rd6eEF3BTNvQnR2e2wwolfTmUTnp70aUTqr0oaGbHifzC3BKJsoV+Gat8vxUMR1hwOKBs6El+qWehrHbCpW6SQ==}
 
 snapshots:
 
@@ -4114,10 +4139,10 @@ snapshots:
 
   drizzle-orm@0.44.1: {}
 
-  drizzle-zod@0.8.2(drizzle-orm@0.44.1)(zod@3.25.1):
+  drizzle-zod@0.8.2(drizzle-orm@0.44.1)(zod@3.25.56):
     dependencies:
       drizzle-orm: 0.44.1
-      zod: 3.25.1
+      zod: 3.25.56
 
   dunder-proto@1.0.1:
     dependencies:
@@ -5809,4 +5834,4 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@3.25.1: {}
+  zod@3.25.56: {}

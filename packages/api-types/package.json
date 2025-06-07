@@ -1,11 +1,10 @@
 {
-  "name": "@workspace/schema",
+  "name": "@workspace/api-types",
   "version": "0.0.0",
   "type": "module",
   "private": true,
   "dependencies": {
-    "drizzle-orm": "^0.44.1",
-    "drizzle-zod": "^0.8.2",
+    "@workspace/schema": "workspace:*",
     "zod": "^3.25.56"
   },
   "devDependencies": {
@@ -16,7 +15,6 @@
     "typescript": "^5.7.3"
   },
   "exports": {
-    "./users": "./src/users.ts",
     "./nodes": "./src/nodes.ts"
   }
 }
