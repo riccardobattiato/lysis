@@ -17,6 +17,6 @@
   },
   "exports": {
     "./users": "./src/users.ts",
-    "./items": "./src/items.ts"
+    "./nodes": "./src/nodes.ts"
   }
 }
