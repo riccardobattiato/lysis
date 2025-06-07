@@ -14,14 +14,14 @@ import {
   createUpdateSchema,
 } from "drizzle-zod";
 
-export enum ItemType {
-  FOLDER = "FOLDER",
-  ITEM = "ITEM",
+export enum NodeType {
+  LIST = "LIST",
+  TASK = "TASK",
 }
-export const itemTypeEnum = pgEnum("item_type", ["FOLDER", "ITEM"]);
+export const nodeTypeEnum = pgEnum("node_type", ["LIST", "TASK"]);
 
-export const items = table(
-  "items",
+export const nodes = table(
+  "nodes",
   {
     id: t.uuid().defaultRandom().primaryKey(),
     userId: t
@@ -30,8 +30,8 @@ export const items = table(
       .references(() => users.id, { onDelete: "cascade" }),
     parentId: t
       .uuid("parent_id")
-      .references((): AnyPgColumn => items.id, { onDelete: "cascade" }),
-    type: itemTypeEnum().notNull(),
+      .references((): AnyPgColumn => nodes.id, { onDelete: "cascade" }),
+    type: nodeTypeEnum().notNull(),
     title: t.text().notNull(),
     description: t.text(),
     completedAt: t.timestamp("completed_at", { withTimezone: true }),
@@ -44,19 +44,23 @@ export const items = table(
   },
   (table) => [
     check("check_parent_id_not_self", sql`id <> parent_id`),
-    index("items_user_id_idx").on(table.userId),
-    index("items_parent_id_idx").on(table.parentId),
-    index("items_user_id_parent_id_idx").on(table.userId, table.parentId),
-    index("items_user_id_type_idx").on(table.userId, table.type),
+    check(
+      "check_list_not_completed",
+      sql`type <> 'list' OR completed_at IS NULL`,
+    ),
+    index("nodes_user_id_idx").on(table.userId),
+    index("nodes_parent_id_idx").on(table.parentId),
+    index("nodes_user_id_parent_id_idx").on(table.userId, table.parentId),
+    index("nodes_user_id_type_idx").on(table.userId, table.type),
   ],
 );
 
-export type SelectItem = InferSelectModel<typeof items>;
-export type InsertItem = Omit<
-  InferInsertModel<typeof items>,
+export type SelectNode = InferSelectModel<typeof nodes>;
+export type InsertNode = Omit<
+  InferInsertModel<typeof nodes>,
   "createdAt" | "updatedAt"
 >;
 
-export const selectItemSchema = createSelectSchema(items);
-export const insertItemSchema = createInsertSchema(items);
-export const updateItemSchema = createUpdateSchema(items);
+export const selectNodeSchema = createSelectSchema(nodes);
+export const insertNodeSchema = createInsertSchema(nodes);
+export const updateNodeSchema = createUpdateSchema(nodes);
